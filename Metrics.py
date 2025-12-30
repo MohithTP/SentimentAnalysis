@@ -5,8 +5,8 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
 import seaborn as sns
 import matplotlib.pyplot as plt
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.text import Tokenizer #type:ignore
+from tensorflow.keras.preprocessing.sequence import pad_sequences #type:ignore
 
 # --- 1. SETUP DATA (Must match Training exactly) ---
 print("Preparing data for evaluation...")
@@ -55,7 +55,6 @@ print("="*40)
 print(classification_report(y_val, y_pred, target_names=le.classes_))
 
 # --- 4. PLOT CONFUSION MATRIX ---
-# Visualization is key to seeing which emotions the model confuses
 plt.figure(figsize=(12,10))
 sns.heatmap(confusion_matrix(y_val, y_pred), annot=True, fmt='d', cmap='Blues',
             xticklabels=le.classes_, yticklabels=le.classes_)

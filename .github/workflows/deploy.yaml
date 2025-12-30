@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
           pip install boto3 sagemaker pandas
 
       - name: Run Deployment Script
-        run: python deploy_sagemaker.py

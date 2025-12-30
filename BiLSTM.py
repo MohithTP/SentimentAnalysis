@@ -2,11 +2,11 @@ import numpy as np
 import pandas as pd
 import mlflow
 import mlflow.keras
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Embedding, LSTM, Bidirectional, Dense, Dropout, BatchNormalization
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.preprocessing.text import Tokenizer #type:ignore
+from tensorflow.keras.preprocessing.sequence import pad_sequences #type:ignore
+from tensorflow.keras.models import Sequential #type:ignore
+from tensorflow.keras.layers import Embedding, LSTM, Bidirectional, Dense, Dropout, BatchNormalization #type:ignore
+from tensorflow.keras.optimizers import Adam #type:ignore
 
 # --- 1. Load Data ---
 df = pd.read_csv('Dataset/master_dataset.csv').dropna()

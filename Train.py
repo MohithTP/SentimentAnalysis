@@ -8,10 +8,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Embedding, LSTM, GRU, Dense, Dropout
+from tensorflow.keras.preprocessing.text import Tokenizer #type:ignore 
+from tensorflow.keras.preprocessing.sequence import pad_sequences #type:ignore
+from tensorflow.keras.models import Sequential #type:ignore
+from tensorflow.keras.layers import Embedding, LSTM, GRU, Dense, Dropout #type:ignore
 
 # Load and Split Data
 df = pd.read_csv('Dataset/master_dataset.csv').dropna()

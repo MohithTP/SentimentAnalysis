@@ -31,17 +31,17 @@ def load_and_standardize():
     isear = isear.iloc[:, [0, -1]]
     isear.columns = ['label', 'text']
 
-    # 3. GoEmotions (The One-Hot Fix)
-    print("Processing GoEmotions (One-Hot Encoded)...")
+    # 3. GoEmotions 
+    print("Processing GoEmotion...")
     g1 = pd.read_csv('Dataset/goemotions_1.csv')
     g2 = pd.read_csv('Dataset/goemotions_2.csv')
     g3 = pd.read_csv('Dataset/goemotions_3.csv')
     go_raw = pd.concat([g1, g2, g3], ignore_index=True)
     
-    # Identify the emotion columns (they are the ones in our mapping)
+    # Identify the emotion columns
     emotion_cols = [col for col in go_raw.columns if col in mapping.keys()]
     
-    # idxmax(axis=1) finds the column name with the highest value (the 1)
+    # idxmax(axis=1)
     go_raw['label'] = go_raw[emotion_cols].idxmax(axis=1)
     go = go_raw[['text', 'label']]
 
