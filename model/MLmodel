@@ -1,0 +1,20 @@
+artifact_path: file:D:/SentimentAnalysis/mlruns/6/models/m-b526a72ec7d54137ab5a38161a0af52f/artifacts
+flavors:
+  keras:
+    data: data
+    keras_backend: tensorflow
+    keras_version: 3.13.0
+    save_exported_model: false
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.keras
+    python_version: 3.13.1
+mlflow_version: 3.7.0
+model_id: m-b526a72ec7d54137ab5a38161a0af52f
+model_size_bytes: 12970564
+model_uuid: m-b526a72ec7d54137ab5a38161a0af52f
+prompts: null
+run_id: 8102a5fc3958413bbbdbbd62db0b6a37
+utc_time_created: '2025-12-27 18:01:23.924856'
