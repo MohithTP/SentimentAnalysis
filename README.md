@@ -1,68 +1,110 @@
-# 🎥Sentiment Analysis System
+# 🎥 YouTube Sentiment AI & Monitoring System
 
-A full-stack sentiment analysis solution that uses a **BiLSTM Deep Learning model** deployed on **AWS SageMaker** to analyze YouTube comments in real-time via a **Chrome Extension**.
+[![AWS SageMaker](https://img.shields.io/badge/AWS-SageMaker-FF9900?logo=amazonsagemaker&logoColor=white)](https://aws.amazon.com/sagemaker/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15+-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![Evidently AI](https://img.shields.io/badge/Evidently-Monitoring-purple)](https://www.evidentlyai.com/)
+[![Python 3.13](https://img.shields.io/badge/Python-3.13+-blue?logo=python&logoColor=white)](https://www.python.org/)
+
+A professional, end-to-end sentiment analysis solution featuring a **Bi-LSTM Deep Learning model** deployed on **AWS SageMaker**. Analyze YouTube comments in real-time with a custom **Chrome Extension** and monitor model health using **Evidently AI**.
+
+---
 
 ## 🌟 Key Features
-- **Deep Learning Model**: Bidirectional LSTM trained for 7-class emotion classification (joy, sadness, anger, fear, etc.).
-- **Cloud Scale**: Model deployed as a scalable AWS SageMaker endpoint.
-- **Real-time Integration**: Chrome Extension for scraping and analyzing YouTube comments instantly.
-- **Secure Proxy**: Integrated Python proxy server to handle AWS IAM signatures securely.
 
-## 🏗️ Project Architecture
+*   **⚡ Real-Time Inference**: Scrape and analyze YouTube comments directly in your browser.
+*   **🧠 Bidirectional LSTM**: Advanced NLP model for 7-class emotion classification (Joy, Sadness, Anger, Fear, Surprise, Disgust, Neutral).
+*   **☁️ Cloud Native**: Fully automated deployment to AWS SageMaker via Docker and GitHub Actions.
+*   **🛡️ Secure Proxy**: Local bridge for AWS Signature V4 authentication, keeping your IAM keys secret.
+*   **📊 Insightful Visuals**: Dynamic Pie Charts in the extension and detailed Drift Reports for monitoring.
+*   **📈 Continuous Monitoring**: Detect **Data Drift** and **Target Drift** with automated Evidently AI reports.
+
+---
+
+## 🏗️ System Architecture
+
 ```mermaid
-graph LR
-    YT[YouTube Toolbar] --> EXT[Chrome Extension]
-    EXT --> PRX[Local Proxy :8080]
-    PRX --> AWS[AWS SageMaker Endpoint]
-    AWS --> Model[BiLSTM Model]
+graph TD
+    A[YouTube Video Page] -->|Scrape| B[Chrome Extension]
+    B -->|POST /invocations| C[Local Proxy :8080]
+    C -->|AWS SigV4 Proxy| D[AWS SageMaker Endpoint]
+    D -->|Dockerized| E[Flask + TensorFlow Model]
+    C -->|Log| F[(prediction_logs.csv)]
+    F -->|Analyze| G[Evidently AI Reports]
+    H[Reference Data] -->|Compare| G
 ```
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.13+
-- Docker (for deployment)
-- AWS CLI configured with a valid IAM user
+- **Python 3.13+** (using `uv` for package management)
+- **AWS CLI** configured (`aws configure`)
+- **Docker** (for cloud deployment)
 
 ### 1. Installation
-Clone the repository and install dependencies using `uv`:
+Clone the repository and install the production environment:
 ```powershell
 uv sync
 ```
 
-### 2. Deployment (AWS SageMaker)
-To build the Docker image and deploy your model to the cloud:
-```powershell
-python deploy_sagemaker.py
-```
-*Note: This will automatically build the image, push to ECR, and create the SageMaker endpoint.*
-
-### 3. Local Proxy Setup
-Because browsers cannot securely make calls to AWS IAM-protected endpoints, run the proxy server locally:
+### 2. Run the Local Proxy
+The proxy handles communication between the browser and AWS securely:
 ```powershell
 uv run python sagemaker_proxy.py
 ```
 
-### 4. Chrome Extension
-1. Open Chrome and go to `chrome://extensions/`.
+### 3. Install the Chrome Extension
+1. Go to `chrome://extensions/` in Chrome.
 2. Enable **Developer Mode**.
-3. Click **Load Unpacked**.
-4. Select the `ChromeExtension` folder from this repository.
-5. Go to a YouTube video and click **Analyze Comments**!
-
-## 📁 Repository Structure
-- `BiLSTM.py`: Model architecture and training logic.
-- `DataSetup.py`: Data cleaning and preprocessing pipeline.
-- `deploy_sagemaker.py`: AWS deployment automation.
-- `inference.py`: Flask-based inference service (runs in Docker).
-- `sagemaker_proxy.py`: Local bridge between Extension and AWS.
-- `ChromeExtension/`: UI and scraping logic for the browser.
-
-## 🛠️ Built With
-- **TensorFlow/Keras**: Deep Learning framework.
-- **SageMaker**: Cloud ML hosting.
-- **Flask**: Inference and Proxy API.
-- **uv**: Python package management.
+3. Click **Load Unpacked** and select the `ChromeExtension/` folder.
 
 ---
-**Status**: Stable & Active
+
+## ☁️ Deployment (CI/CD)
+
+The project includes a **GitHub Actions** workflow for automated deployment.
+- **Push-to-Deploy**: Every push to `main` that modifies the model or Dockerfile triggers a SageMaker redeploy.
+- **Manual Deployment**:
+  ```powershell
+  uv run python deploy_sagemaker.py
+  ```
+
+---
+
+## 📊 Monitoring & Model Health
+
+We use **Evidently AI** to ensure our model doesn't become outdated as YouTube slang evolves.
+
+1.  **Collect Data**: The local proxy automatically saves all analysis results to `prediction_logs.csv`.
+2.  **Generate Report**:
+    ```powershell
+    uv run python monitor_model.py
+    ```
+3.  **Analyze**: Open `monitoring_report.html` to visualize if your live data has "drifted" from your original training data.
+
+---
+
+## 📁 Repository Structure
+
+| File | Description |
+| :--- | :--- |
+| **`BiLSTM.py`** | Model architecture and training logic. |
+| **`DataSetup.py`** | Data cleaning and 7-class mapping. |
+| **`deploy_sagemaker.py`** | AWS Automation script (ECR + SageMaker). |
+| **`inference.py`** | The API server running inside the cloud container. |
+| **`sagemaker_proxy.py`** | The security bridge for the Chrome Extension. |
+| **`monitor_model.py`** | Drift detection and report generation. |
+| **`ChromeExtension/`** | Browser code (Scraper, UI, Charting). |
+
+---
+
+## 🛠️ Tech Stack
+- **Backend**: TensorFlow, Keras, Flask, Boto3
+- **Cloud**: AWS ECR, AWS SageMaker
+- **Frontend**: Javascript, Chart.js, CSS Glassmorphism
+- **Monitoring**: Evidently AI
+- **DevOps**: GitHub Actions, Docker, uv
+
+---
+**Maintained by**: MohithTP | **Status**: Production Ready 🚀
