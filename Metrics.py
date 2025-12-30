@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing.text import Tokenizer #type:ignore
 from tensorflow.keras.preprocessing.sequence import pad_sequences #type:ignore
 
-# --- 1. SETUP DATA (Must match Training exactly) ---
+# --- 1. SETUP DATA ---
 print("Preparing data for evaluation...")
 df = pd.read_csv('Dataset/master_dataset.csv').dropna()
 le = LabelEncoder()
@@ -33,12 +33,10 @@ model_uri = f"runs:/{RUN_ID}/bilstm_glove_model"
 
 print(f"Loading model from: {model_uri}")
 try:
-    # Recommended MLOps method for loading models
     model = mlflow.keras.load_model(model_uri)
     print("Model loaded successfully!")
 except Exception as e:
     print(f"Standard load failed, attempting direct path... Error: {e}")
-    # Fallback for Windows-specific path issues
     direct_path = rf"D:\SentimentAnalysis\mlruns\6\{RUN_ID}\artifacts\bilstm_glove_model"
     model = mlflow.keras.load_model(direct_path)
 

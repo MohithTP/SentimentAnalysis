@@ -22,7 +22,6 @@ def generate_monitoring_report():
         print(f"Warning: {current_file} not found. Creating a simulation for demonstration...")
         # Simulate some data if no logs exist yet
         current_data = reference_data.sample(min(500, len(reference_data)))
-        # Introduce some "drift" by changing some labels 
         current_data.loc[current_data.index[:50], 'text'] = "This video is so bad and I hate it" 
         current_data.loc[current_data.index[:50], 'label'] = 'anger'
     else:
@@ -30,7 +29,6 @@ def generate_monitoring_report():
         print(f"Loaded {len(current_data)} current prediction samples.")
     
     # 3. Create Evidently Report
-    # We monitor 'text' for data drift and 'label' for target drift
     print("Generating Drift Report...")
     report = Report(metrics=[
         DataDriftPreset(), 
