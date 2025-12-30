@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sentiment Analyzer</title>
+    <script src="chart.min.js"></script>
+    <style>
+        body {
+            width: 320px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.1s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #results {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .error {
+            color: #e53e3e;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>YT Sentiment AI</h2>
+    <div style="text-align: center; margin-bottom: 15px; color: #777; font-size: 12px;">Analyzes visible comments</div>
+
+    <button id="analyzeBtn">Analyze Comments</button>
+
+    <div class="loader" id="loader"></div>
+    <div class="error" id="error"></div>
+
+    <div id="results">
+        <canvas id="emotionChart" width="280" height="280" style="margin-bottom: 20px;"></canvas>
+        <div class="stat-box">
+            <span class="label">Dominant Emotion:</span>
+            <span class="value" id="dominant">Joy</span>
+        </div>
+        <div class="stat-box">
+            <span class="label">Positive:</span>
+            <span class="value" id="positive_pct">0%</span>
+        </div>
+        <div class="stat-box">
+            <span class="label">Sample Size:</span>
+            <span class="value" id="count">0</span>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

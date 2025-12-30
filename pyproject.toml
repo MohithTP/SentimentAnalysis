@@ -5,6 +5,17 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "boto3>=1.42.17",
     "dvc>=3.64.2",
+    "evidently>=0.7.18",
+    "flask-cors>=6.0.2",
+    "keras>=3.13.0",
+    "mlflow>=3.7.0",
+    "optuna-integration[mlflow]",
+    "optuna>=4.6.0",
     "pandas>=2.3.3",
+    "sagemaker>=2.255.0",
+    "scikit-learn>=1.8.0",
+    "seaborn",
+    "tensorflow>=2.20.0",
 ]

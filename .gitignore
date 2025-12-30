@@ -8,3 +8,32 @@ wheels/
 
 # Virtual environments
 .venv
+.env
+
+# ML Lifecycle & Artifacts
+mlruns/
+artifacts/
+model/
+*.keras
+*.pkl
+*.tok
+*.pickle
+mlflow.db
+
+# Data & Logs
+Dataset/
+prediction_logs.csv
+*.log
+*.txt
+*.csv
+
+# Monitoring Reports
+comparison.html
+Data_report.html
+monitoring_report.html
+
+
+# IDEs
+.vscode/
+.idea/
+*.swp
