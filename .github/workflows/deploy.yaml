@@ -21,12 +21,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.13'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
 
       - name: Install Dependencies
         run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pip install boto3 sagemaker pandas
+          uv sync
 
       - name: Run Deployment Script
-        run: python deploy_sagemaker.py
+        run: uv run python deploy_sagemaker.py
