@@ -29,3 +29,4 @@ jobs:
           pip install boto3 sagemaker pandas
 
       - name: Run Deployment Script
+        run: python deploy_sagemaker.py
