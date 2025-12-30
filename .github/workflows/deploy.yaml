@@ -3,6 +3,9 @@ name: Deployment to SageMaker
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'Dockerfile'
+      - 'deploy_sagemaker.py'
 
 jobs:
   deploy:
