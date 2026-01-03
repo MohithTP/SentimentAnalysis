@@ -2,7 +2,12 @@
 
 [![AWS SageMaker](https://img.shields.io/badge/AWS-SageMaker-FF9900?logo=amazonsagemaker&logoColor=white)](https://aws.amazon.com/sagemaker/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15+-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![MLflow](https://img.shields.io/badge/MLflow-Tracking-0194E2?logo=mlflow&logoColor=white)](https://mlflow.org/)
+[![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Evidently AI](https://img.shields.io/badge/Evidently-Monitoring-purple)](https://www.evidentlyai.com/)
+[![Flask](https://img.shields.io/badge/Flask-API-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/)
+[![Git](https://img.shields.io/badge/Git-Version--Control-F05032?logo=git&logoColor=white)](https://git-scm.com/)
 [![Python 3.13](https://img.shields.io/badge/Python-3.13+-blue?logo=python&logoColor=white)](https://www.python.org/)
 
 A professional, end-to-end sentiment analysis solution featuring a **Bi-LSTM Deep Learning model** deployed on **AWS SageMaker**. Analyze YouTube comments in real-time with a custom **Chrome Extension** and monitor model health using **Evidently AI**.

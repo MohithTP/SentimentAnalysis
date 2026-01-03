@@ -13,11 +13,10 @@ wheels/
 # ML Lifecycle & Artifacts
 mlruns/
 artifacts/
-model/
-*.keras
-*.pkl
+# model/  
+# *.keras 
+# *.pickle 
 *.tok
-*.pickle
 mlflow.db
 
 # Data & Logs
