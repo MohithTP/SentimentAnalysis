@@ -112,4 +112,3 @@ We use **Evidently AI** to ensure our model doesn't become outdated as YouTube s
 - **DevOps**: GitHub Actions, Docker, uv
 
 ---
-**Maintained by**: MohithTP | **Status**: Production Ready 🚀
